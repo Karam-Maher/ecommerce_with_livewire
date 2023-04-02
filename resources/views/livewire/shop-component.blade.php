@@ -85,7 +85,7 @@
                                     </div>
                                     <div class="product-content-wrap">
                                         <div class="product-category">
-                                            <a href="shop.html">Music</a>
+                                            <a href="#">Music</a>
                                         </div>
                                         <h2><a href="{{ route('product.details',['slug'=>$product->slug]) }}">
                                                 {{$product->name }}</a></h2>
@@ -99,8 +99,9 @@
                                             <span class="old-price">${{ $product->regular_price }}</span>
                                         </div>
                                         <div class="product-action-1 show">
-                                            <a aria-label="Add To Cart" class="action-btn hover-up"
-                                                href="shop-cart.php"><i class="fi-rs-shopping-bag-add"></i></a>
+                                            <a aria-label="Add To Cart" class="action-btn hover-up" href="#"
+                                                wire:click.pervent="store({{ $product->id }},'{{ $product->name }}',{{ $product->sale_price }})"><i
+                                                    class="fi-rs-shopping-bag-add"></i></a>
                                         </div>
                                     </div>
                                 </div>
