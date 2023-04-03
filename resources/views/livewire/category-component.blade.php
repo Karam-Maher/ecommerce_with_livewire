@@ -14,7 +14,7 @@
                     <div class="col-lg-9">
                         <div class="shop-product-fillter">
                             <div class="totall-product">
-                                <p> We found <strong class="text-brand">{{ $products->total() }}</strong> items for you!
+                                <p> We found <strong class="text-brand">{{ $products->total() }}</strong> items for you form <strong class="text-brand">{{ $category_name }}</strong> !
                                 </p>
                             </div>
                             <div class="sort-by-product-area">
@@ -145,8 +145,7 @@
                             <h5 class="section-title style-1 mb-30 wow fadeIn animated">Category</h5>
                             <ul class="categories">
                                 @foreach ($categories as $category)
-                                <li><a href="{{ route('product.category',['slug'=> $category->slug]) }}">{{
-                                        $category->name }}</a></li>
+                                <li><a href="shop.html">{{ $category->name }}</a></li>
                                 @endforeach
                             </ul>
                         </div>
