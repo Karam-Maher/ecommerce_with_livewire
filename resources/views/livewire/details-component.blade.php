@@ -88,7 +88,7 @@
                                         <div class="clearfix product-price-cover">
                                             <div class="product-price primary-color float-left">
                                                 <ins><span class="text-brand">${{ $product->sale_price }}</span></ins>
-                                                <ins><span class="old-price font-md ml-15">${{ $product->regular_price
+                                                <ins><span class="old-price font-md ml-15">${{ $product->old_price
                                                         }}</span></ins>
                                                 <span class="save-price  font-md color3 ml-15">25% Off</span>
                                             </div>
@@ -501,7 +501,7 @@
                                                     </div>
                                                     <div class="product-price">
                                                         <span>${{ $rproduct->sale_price }} </span>
-                                                        <span class="old-price">${{ $rproduct->regular_price }}</span>
+                                                        <span class="old-price">${{ $rproduct->old_price }}</span>
                                                     </div>
                                                 </div>
                                             </div>

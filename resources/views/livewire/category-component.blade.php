@@ -107,7 +107,7 @@
                                         </div>
                                         <div class="product-price">
                                             <span>${{ $product->sale_price }}</span>
-                                            <span class="old-price">${{ $product->regular_price }}</span>
+                                            <span class="old-price">${{ $product->old_price }}</span>
                                         </div>
                                         <div class="product-action-1 show">
                                             <a aria-label="Add To Cart" class="action-btn hover-up" href="#"

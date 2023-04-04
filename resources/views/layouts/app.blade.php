@@ -14,8 +14,10 @@
     <link rel="shortcut icon" type="image/x-icon" href="assets/imgs/theme/favicon.ico">
     <link rel="stylesheet" href="{{ asset('assets-front/css/main.css') }}">
     <link rel="stylesheet" href="{{ asset('assets-front/css/custom.css') }}">
+    @livewireStyles
+    @stack('styles')
 </head>
-@livewireStyles
+
 
 <body>
     <header class="header-area header-style-1 header-height-2">
@@ -70,7 +72,7 @@
                         <a href="index.html"><img src="{{ asset('assets-front/imgs/logo/logo.png') }}" alt="logo"></a>
                     </div>
                     <div class="header-right">
-                       @livewire('header-search-component')
+                        @livewire('header-search-component')
                         <div class="header-action-right">
                             <div class="header-action-2">
                                 <div class="header-action-icon-2">
@@ -767,7 +769,8 @@
     <!-- Template  JS -->
     <script src="{{ asset('assets-front/js/main.js?v=3.3') }}"></script>
     <script src="{{ asset('assets-front/js/shop.js?v=3.3') }}"></script>
+    @livewireScripts
+    @stack('scripts')
 </body>
-@livewireScripts
 
 </html>

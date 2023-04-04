@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('short_description')->nullable();
             $table->text('description')->nullable();
             $table->string('image')->nullable();
-            $table->decimal('regular_price', 8, 2);
+            $table->decimal('old_price', 8, 2);
             $table->decimal('sale_price', 8, 2);
             $table->string('SKU');
             $table->enum('status', ['active', 'archived'])->default('active');
