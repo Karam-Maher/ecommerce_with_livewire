@@ -1,4 +1,22 @@
 <div>
+    <style>
+        nav svg {
+            height: 20px;
+        }
+
+        nav .hidden {
+            display: block;
+        }
+
+        .wishlisted {
+            background-color: #f15412 !important;
+            border: 1px solid transparent !important;
+        }
+
+        .wishlisted i {
+            color: #fff !important;
+        }
+    </style>
     <main class="main">
         <div class="page-header breadcrumb-wrap">
             <div class="container">
@@ -69,6 +87,9 @@
                             </div>
                         </div>
                         <div class="row product-grid-3">
+                            @php
+                            $witems =Cart::instance('wishlist')->content()->pluck('id');
+                            @endphp
                             @foreach ($products as $product)
                             <div class="col-lg-4 col-md-4 col-6 col-sm-6">
                                 <div class="product-cart-wrap mb-30">
@@ -110,9 +131,20 @@
                                             <span class="old-price">${{ $product->old_price }}</span>
                                         </div>
                                         <div class="product-action-1 show">
+                                            @if ($witems->contains($product->id))
+                                            <a aria-label="Remove From Wishlist" class="action-btn hover-up wishlisted"
+                                                href="#" wire:click.pervent="removeFromWishlist({{ $product->id }})"><i class="fi-rs-heart"></i>
+                                            </a>
+                                            @else
+                                            <a aria-label="Add To Wishlist" class="action-btn hover-up" href="#"
+                                                wire:click.prevent="addTwoWishlist({{ $product->id}} ,'{{ $product->name }}' ,{{ $product->sale_price }})"><i
+                                                    class="fi-rs-heart"></i>
+                                            </a>
+                                            @endif
                                             <a aria-label="Add To Cart" class="action-btn hover-up" href="#"
                                                 wire:click.pervent="store({{ $product->id }},'{{ $product->name }}',{{ $product->sale_price }})"><i
-                                                    class="fi-rs-shopping-bag-add"></i></a>
+                                                    class="fi-rs-shopping-bag-add"></i>
+                                            </a>
                                         </div>
                                     </div>
                                 </div>

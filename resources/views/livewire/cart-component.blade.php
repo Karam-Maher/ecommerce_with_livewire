@@ -17,7 +17,7 @@
                             @if (Session::has('success_message'))
                             <div class="alert alert-success"><strong>Success {{ Session::get('success_message')}}</strong></div>
                             @endif
-                            @if (Cart::count() >0)
+                            @if (Cart::instance('cart')->count() >0)
                             <table class="table shopping-summery text-center clean">
                                 <thead>
                                     <tr class="main-heading">
