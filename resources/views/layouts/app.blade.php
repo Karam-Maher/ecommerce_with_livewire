@@ -56,10 +56,23 @@
                     </div>
                     <div class="col-xl-3 col-lg-4">
                         <div class="header-info header-info-right">
+                            @auth
                             <ul>
-                                <li><i class="fi-rs-key"></i><a href="login.html">Log In </a> / <a
-                                        href="register.html">Sign Up</a></li>
+                                <li>
+                                    <i class="fi-rs-user"></i> {{ Auth::user()->name }} /
+                                    <form action="{{ route('logout') }}" method="post">
+                                        @csrf
+                                        <a href="{{ route('logout') }}"
+                                            onclick="event.preventDefault(); this.closest('form').submit();">logout</a>
+                                    </form>
+                                </li>
                             </ul>
+                            @else
+                            <ul>
+                                <li><i class="fi-rs-key"></i><a href="{{ route('login') }}">Log In </a> / <a
+                                        href="{{ route('register') }}">Sign Up</a></li>
+                            </ul>
+                            @endauth
                         </div>
                     </div>
                 </div>
@@ -406,15 +419,22 @@
                                     <li><a href="blog.html">Blog </a></li>
                                     <li><a href="contact.html">Contact</a></li>
                                     <li><a href="#">My Account<i class="fi-rs-angle-down"></i></a>
+                                        @auth
+                                        @if (Auth::user()->utype === 'ADM')
                                         <ul class="sub-menu">
-                                            <li><a href="#">Dashboard</a></li>
+                                            <li><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
                                             <li><a href="#">Products</a></li>
                                             <li><a href="#">Categories</a></li>
                                             <li><a href="#">Coupons</a></li>
                                             <li><a href="#">Orders</a></li>
                                             <li><a href="#">Customers</a></li>
-                                            <li><a href="#">Logout</a></li>
                                         </ul>
+                                        @else
+                                        <ul class="sub-menu">
+                                            <li><a href="{{route('user.dashboard')}}">Dashboard</a></li>
+                                        </ul>
+                                        @endif
+                                        @endauth
                                     </li>
                                 </ul>
                             </nav>
@@ -595,10 +615,10 @@
                         <a href="contact.html"> Our location </a>
                     </div>
                     <div class="single-mobile-header-info">
-                        <a href="login.html">Log In </a>
+                        <a href="{{ route('login') }}">Log In </a>
                     </div>
                     <div class="single-mobile-header-info">
-                        <a href="register.html">Sign Up</a>
+                        <a href="{{ route('register') }}">Sign Up</a>
                     </div>
                     <div class="single-mobile-header-info">
                         <a href="#">(+1) 0000-000-000 </a>
@@ -648,124 +668,3 @@
         <section class="section-padding footer-mid">
             <div class="container pt-15 pb-20">
                 <div class="row">
-                    <div class="col-lg-4 col-md-6">
-                        <div class="widget-about font-md mb-md-5 mb-lg-0">
-                            <div class="logo logo-width-1 wow fadeIn animated">
-                                <a href="index.html"><img src="{{ asset('assets-front/imgs/logo/logo.png') }}"
-                                        alt="logo"></a>
-                            </div>
-                            <h5 class="mt-20 mb-10 fw-600 text-grey-4 wow fadeIn animated">Contact</h5>
-                            <p class="wow fadeIn animated">
-                                <strong>Address: </strong>562 Wellington Road
-                            </p>
-                            <p class="wow fadeIn animated">
-                                <strong>Phone: </strong>+1 0000-000-000
-                            </p>
-                            <p class="wow fadeIn animated">
-                                <strong>Email: </strong>contact@surfsidemedia.in
-                            </p>
-                            <h5 class="mb-10 mt-30 fw-600 text-grey-4 wow fadeIn animated">Follow Us</h5>
-                            <div class="mobile-social-icon wow fadeIn animated mb-sm-5 mb-md-0">
-                                <a href="#"><img src="{{ asset('assets-front/imgs/theme/icons/icon-facebook.svg') }}"
-                                        alt=""></a>
-                                <a href="#"><img src="{{ asset('assets-front/imgs/theme/icons/icon-twitter.svg') }}"
-                                        alt=""></a>
-                                <a href="#"><img src="{{ asset('assets-front/imgs/theme/icons/icon-instagram.svg') }}"
-                                        alt=""></a>
-                                <a href="#"><img src="{{ asset('assets-front/imgs/theme/icons/icon-pinterest.svg') }}"
-                                        alt=""></a>
-                                <a href="#"><img src="{{ asset('assets-front/imgs/theme/icons/icon-youtube.svg') }}"
-                                        alt=""></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-2 col-md-3">
-                        <h5 class="widget-title wow fadeIn animated">About</h5>
-                        <ul class="footer-list wow fadeIn animated mb-sm-5 mb-md-0">
-                            <li><a href="#">About Us</a></li>
-                            <li><a href="#">Delivery Information</a></li>
-                            <li><a href="#">Privacy Policy</a></li>
-                            <li><a href="#">Terms &amp; Conditions</a></li>
-                            <li><a href="#">Contact Us</a></li>
-                        </ul>
-                    </div>
-                    <div class="col-lg-2  col-md-3">
-                        <h5 class="widget-title wow fadeIn animated">My Account</h5>
-                        <ul class="footer-list wow fadeIn animated">
-                            <li><a href="my-account.html">My Account</a></li>
-                            <li><a href="#">View Cart</a></li>
-                            <li><a href="#">My Wishlist</a></li>
-                            <li><a href="#">Track My Order</a></li>
-                            <li><a href="#">Order</a></li>
-                        </ul>
-                    </div>
-                    <div class="col-lg-4 mob-center">
-                        <h5 class="widget-title wow fadeIn animated">Install App</h5>
-                        <div class="row">
-                            <div class="col-md-8 col-lg-12">
-                                <p class="wow fadeIn animated">From App Store or Google Play</p>
-                                <div class="download-app wow fadeIn animated mob-app">
-                                    <a href="#" class="hover-up mb-sm-4 mb-lg-0"><img class="active"
-                                            src="assets/imgs/theme/app-store.jpg" alt=""></a>
-                                    <a href="#" class="hover-up"><img
-                                            src="{{ asset('assets-front/imgs/theme/google-play.jpg') }}" alt=""></a>
-                                </div>
-                            </div>
-                            <div class="col-md-4 col-lg-12 mt-md-3 mt-lg-0">
-                                <p class="mb-20 wow fadeIn animated">Secured Payment Gateways</p>
-                                <img class="wow fadeIn animated"
-                                    src="{{ asset('assets/imgs/theme/payment-method.png') }}" alt="">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <div class="container pb-20 wow fadeIn animated mob-center">
-            <div class="row">
-                <div class="col-12 mb-20">
-                    <div class="footer-bottom"></div>
-                </div>
-                <div class="col-lg-6">
-                    <p class="float-md-left font-sm text-muted mb-0">
-                        <a href="privacy-policy.html">Privacy Policy</a> | <a href="terms-conditions.html">Terms &
-                            Conditions</a>
-                    </p>
-                </div>
-                <div class="col-lg-6">
-                    <p class="text-lg-end text-start font-sm text-muted mb-0">
-                        &copy; <strong class="text-brand">SurfsideMedia</strong> All rights reserved
-                    </p>
-                </div>
-            </div>
-        </div>
-    </footer>
-    <!-- Vendor JS-->
-    <script src="{{ asset('assets-front/js/vendor/modernizr-3.6.0.min.js') }}"></script>
-    <script src="{{ asset('assets-front/js/vendor/jquery-3.6.0.min.js') }}"></script>
-    <script src="{{ asset('assets-front/js/vendor/jquery-migrate-3.3.0.min.js') }}"></script>
-    <script src="{{ asset('assets-front/js/vendor/bootstrap.bundle.min.js') }}"></script>
-    <script src="{{ asset('assets-front/js/plugins/slick.js') }}"></script>
-    <script src="{{ asset('assets-front/js/plugins/jquery.syotimer.min.js') }}"></script>
-    <script src="{{ asset('assets-front/js/plugins/wow.js') }}"></script>
-    <script src="{{ asset('assets-front/js/plugins/jquery-ui.js') }}"></script>
-    <script src="{{ asset('assets-front/js/plugins/perfect-scrollbar.js') }}"></script>
-    <script src="{{ asset('assets-front/js/plugins/magnific-popup.js') }}"></script>
-    <script src="{{ asset('assets-front/js/plugins/select2.min.js') }}"></script>
-    <script src="{{ asset('assets-front/js/plugins/waypoints.js') }}"></script>
-    <script src="{{ asset('assets-front/js/plugins/counterup.js') }}"></script>
-    <script src="{{ asset('assets-front/js/plugins/jquery.countdown.min.js') }}"></script>
-    <script src="{{ asset('assets-front/js/plugins/images-loaded.js') }}"></script>
-    <script src="{{ asset('assets-front/js/plugins/isotope.js') }}"></script>
-    <script src="{{ asset('assets-front/js/plugins/scrollup.js') }}"></script>
-    <script src="{{ asset('assets-front/js/plugins/jquery.vticker-min.js') }}"></script>
-    <script src="{{ asset('assets-front/js/plugins/jquery.theia.sticky.js') }}"></script>
-    <script src="{{ asset('assets-front/js/plugins/jquery.elevatezoom.js') }}"></script>
-    <!-- Template  JS -->
-    <script src="{{ asset('assets-front/js/main.js?v=3.3') }}"></script>
-    <script src="{{ asset('assets-front/js/shop.js?v=3.3') }}"></script>
-    @livewireScripts
-    @stack('scripts')
-</body>
-
-</html>
